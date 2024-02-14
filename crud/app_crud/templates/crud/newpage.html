@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Simples</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="crud-container">
+        <h1>CRUD Simples</h1>
+
+        <!-- Formulário de Criação -->
+        <div class="create-form">
+            <h2>Cadastrar Item</h2>
+            <form action="{% url 'listagem_nomes' %}" id="createForm" method="post">
+                {% csrf_token %}
+                <input name="nome" type="text" id="name" name="name" placeholder="Nome" required>
+                <textarea name="descricao_nome" id="description" name="description" placeholder="Descrição" required></textarea>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+
+        <!-- Lista de Itens -->
+        <div class="items-list">
+            <h2>Itens Cadastrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>ID</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pessoa in pessoas %}
+                    <tr>
+                        <td>{{pessoa.nome}}</td>
+                        <td>{{pessoa.descricao_nome}}</td>
+                        <td>{{pessoa.id_pessoa}}</td>
+                        <td>
+                            <!-- Botões de Editar e Deletar na mesma célula -->
+                            <button class="edit-btn">Editar</button>
+                            <form action="{% url 'delete_pessoa' pessoa.id_pessoa %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="edit-row" style="display:none">
+                        <form action="{% url 'atualizar_pessoa' pessoa.id_pessoa %}" method="post">
+                            {% csrf_token %}
+                            <td>
+                                <input type="text" name="nome" value="{{ pessoa.nome }}" required>
+                            </td>
+                            <td>
+                                <textarea name="descricao_nome" required>{{ pessoa.descricao_nome }}</textarea>
+                            </td>
+                            <td>
+                                <button type="submit">Salvar</button>
+                                <button type="button" class="cancel-btn">Cancelar</button>
+                            </td>
+                        </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var dataRow = button.parentElement.parentElement;
+        var editRow = dataRow.nextElementSibling;
+        dataRow.style.display = 'none';  // Esconde a linha de dados
+        editRow.style.display = 'table-row';  // Mostra a linha de edição
+    });
+});
+
+document.querySelectorAll('.cancel-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var editRow = button.closest('tr');
+        var dataRow = editRow.previousElementSibling;
+        editRow.style.display = 'none';  // Esconde a linha de edição
+        dataRow.style.display = 'table-row';  // Mostra a linha de dados
+    });
+});
+
+    </script>
+</body>
+</html>

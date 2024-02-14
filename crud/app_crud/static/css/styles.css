@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.crud-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.create-form, .items-list {
+    margin-bottom: 30px;
+}
+
+#createForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#createForm input[type=text],
+#createForm textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#createForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+}
+
+#createForm button:hover {
+    background-color: #4cae4c;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.edit {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+button.edit:hover {
+    background-color: #ec971f;
+}
+
+button.delete {
+    background-color: #d9534f;
+    color: white;
+}
+
+button.delete:hover {
+    background-color: #c9302c;
+}
+
+.edit-row input, .edit-row textarea {
+    width: 100%;
+}
+
+.edit-row textarea {
+    height: 50px; /* Ajuste conforme necessário */
+}
+
+button {
+    margin-right: 5px;
+}

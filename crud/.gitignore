@@ -1,0 +1,32 @@
+# Bytecode Python
+__pycache__/
+*.py[cod]
+*__pycache__*
+
+# Ambiente Virtual
+venv/
+env/
+ENV/
+
+# Arquivos de Mídia e Estáticos
+
+
+# Banco de Dados
+db.sqlite3
+
+# Arquivos Sensíveis
+.env
+
+# Arquivos de Log
+*.log
+
+# Cache do Django
+.cache/
+
+# Diretórios de IDE
+.vscode/
+
+# Arquivos de Configuração Específicos do Usuário
+*.swp
+*~
+.DS_Store
